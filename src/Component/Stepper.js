@@ -22,18 +22,21 @@ const Stepper = () => {
               <p className="text-gray-500">{step}</p>
             </div>
           ))}
-        </div>
+        </div><br/>
         {!complete && (
-          <button
-            className="btn"
-            onClick={() => {
-              currentStep === steps.length
-                ? setComplete(true)
-                : setCurrentStep((prev) => prev + 1);
-            }}
-          >
-            {currentStep === steps.length ? "Finish" : "Next"}
-          </button>
+         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <button
+              className="btn"
+              onClick={() => {
+                currentStep === steps.length
+                  ? setComplete(true)
+                  : setCurrentStep((prev) => prev + 1);
+              }}
+              style={{ width: "350px" }}
+            >
+              {currentStep === steps.length ? "Finish" : "Next"}
+            </button>
+          </div>
         )}
       </>
     );

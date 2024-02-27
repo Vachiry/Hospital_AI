@@ -5,23 +5,19 @@ import { useNavigate } from "react-router-dom";
 import { GoArrowLeft } from "react-icons/go";
 
 function PageQuestion1() {
-    
-
     const navigate = useNavigate();           
     const Form = () => {
-    navigate("/Form")
+      navigate("/Form")
     }
     
     return(
        <>
-         <NavBar/>    
-         <Stepper />
-            <GoArrowLeft className="ArrowLeft" onClick={Form}/>
-       
-       
+         <NavBar/>    <br/>
+         <button className="ArrowLeft" onClick={Form} ><GoArrowLeft /></button><br/>
+         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <Stepper />
+         </div>
        </>
-
-
     );
 
 }
