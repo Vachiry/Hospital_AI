@@ -1,10 +1,11 @@
+import './Form.css'
 import './LoginForm.css';
 import { FaUser , FaLock} from "react-icons/fa";
 
 const LoginForm = () => {
 return(
     <>
-        <div className='main-bg'>
+        <div className='main-bg-login'>
             <div className='wrapper'>
                 <form action="">
                     <h1>Login</h1>

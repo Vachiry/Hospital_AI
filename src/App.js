@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 // import "./Questionaire.css"
 import HomeScreen from "./page/HomeScreen";
 import EnterID from "./page/EnterID";

@@ -1,9 +1,10 @@
 import './Register.css'
+import './Form.css'
 
 const Register = () => {
     return(
-        
-        <div className='main-bg'>
+        <> 
+        <div className='main-bg-regis'>
             <div className='wrapper '>
              <form action="">
                  <h1>Sign Up</h1>
@@ -25,6 +26,8 @@ const Register = () => {
             </form>
             </div>
         </div>
+        </>
+       
          
 
     )
