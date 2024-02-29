@@ -13,8 +13,9 @@ function PageQuestion1() {
     return(
        <>
          <NavBar/>    <br/>
-         <button className="ArrowLeft" onClick={Form} ><GoArrowLeft /></button><br/>
-         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <h1>Hello would</h1>
+            <button className="ArrowLeft" onClick={Form} ><GoArrowLeft /></button><br/>
+            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <Stepper />
          </div>
        </>

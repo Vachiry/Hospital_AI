@@ -32,10 +32,12 @@ function EnterID() {
                     <div className="Headtext">{Headtext}
                     <br/>
                         <center>
+
                             <input type="text" className="inputblock " 
                             onChange={(e) => setVal(e.target.value)} 
                             style={{width:'615px'}} 
                             placeholder="กรุณากรอกหมายเลข ID"/>
+                            
                         </center>
                         <Button className="nextto" 
                             onClick ={click}>ถัดไป
