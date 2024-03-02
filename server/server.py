@@ -6,6 +6,9 @@ import json
 from flask_cors import CORS
 import jwt
 from flask_bcrypt import Bcrypt
+import os
+import torch
+from transformers import pipeline
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True, origins='http://localhost:3000', methods=['GET', 'POST'], headers=['Content-Type'])
@@ -129,7 +132,7 @@ def SignIn():
         print(user['admin_password'])
         if user['admin_password'] == password:
             token = jwt.encode({'admin_username': username}, SECRET_KEY, algorithm='HS256')
-            return jsonify({'token': token}), 200
+            return jsonify({'token': token,"user":user}), 200
         else:
             # User not found or password does not match
             return jsonify({'error': 'Invalid username or password'}), 401
@@ -164,7 +167,44 @@ def Register():
         print(f"Error: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/Model', methods=['POST'])
+def Model():
+    try:
+        
+        audio_file = request.files['audio']
+        print(audio_file)
+        if audio_file:
+            # Save the audio file to a specific location
+            path = './Audio/'
+            if not os.path.exists(path):
+                os.makedirs(path)
+            audio_path = os.path.join(path, 'audio.wav')
+            audio_file.save(audio_path)
+        MODEL_NAME = "biodatlab/whisper-th-medium-combined"
+        lang = "th"
 
+        device = 0 if torch.cuda.is_available() else "cpu"
+
+        pipe = pipeline(
+            task="automatic-speech-recognition",
+            model=MODEL_NAME,
+            chunk_length_s=30,
+            device=device,
+        )
+        transcriptions = pipe(
+            audio_path,
+            batch_size=16,
+            return_timestamps=False,
+            generate_kwargs={"language": "<|th|>", "task": "transcribe"}
+        )["text"]
+        print(transcriptions)
+        result = {
+            'transcriptions':transcriptions
+        }
+        return jsonify({'text': result}), 200
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
