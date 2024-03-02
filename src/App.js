@@ -11,6 +11,8 @@ import Editting from './page/Editting';
 import Layout from './Component/Shared/Layout';
 import { BrowserRouter,Routes,Route,} from "react-router-dom";
 import Register from "./Component/Register";
+import Testaudio from "./page/Testaudio";
+
 function App() {
  
 
@@ -30,6 +32,7 @@ function App() {
                     <Route exact path="/Layout" element={<Layout/>} />
                     <Route exact path="/Dashboard" element={<Dashboard/>} />
                     <Route exact path="/Editting" element={<Editting/>} />
+                    <Route exact path="/Testaudio" element={<Testaudio/>} />
                 </Routes>
            </BrowserRouter>
     </>
